@@ -1,6 +1,5 @@
 <?php
-	global $modx;
-	global $database_type, $database_server, $database_user, $database_password, $database_connection_charset, $database_connection_method, $dbase, $table_prefix, $site_sessionname;
+	global $modx, $database_type, $table_prefix;
 
 	if (!isset($modx)) {
 		include $PHORUM["phorum_mod_external_authentication"]["app_path"].'/manager/includes/config.inc.php';
@@ -23,6 +22,11 @@
 		if(!isset($_SESSION['mgrValidated']) || !$_SESSION['mgrValidated']) {
 			@ini_set("display_errors","0"); 
 		}
-		$modx->db->connect();
+		$modx->db->connect(	$database_server,
+							$dbase, $database_user,
+							$database_password,
+							$table_prefix,
+							$database_connection_charset,
+							$database_connection_method);
 	}
 ?>

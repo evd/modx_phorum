@@ -19,7 +19,6 @@ if (!defined("PHORUM")) return;
  * settings_post.php file.  The Drupal_6_x plugin can also be used as an example
  * for this functionality
  *
- * global $PHORUM;
  *
  * $PHORUM["phorum_mod_external_authentication"]["base_plugin"]["color_variables"] = array (
  *     "default_background_color" => "#EEEEEE",
@@ -29,5 +28,16 @@ if (!defined("PHORUM")) return;
  *     $PHORUM["DATA"] = array_merge($PHORUM["DATA"], $PHORUM["phorum_mod_external_authentication"]["base_plugin"]["color_variables"]);
  * }
  */
- 
+global $PHORUM;
+if (!empty($PHORUM["phorum_mod_external_authentication"]["modx"]["generic_integration_template"]) && (!empty($GLOBALS["INTEGRATE_HEADER"]))) {
+  $PHORUM["DATA"]["INTEGRATE_HEADER"] = TRUE;
+    
+  if (!empty($PHORUM["phorum_mod_external_authentication"]["modx"]["color_variables"])) {
+      $PHORUM["DATA"] = array_merge($PHORUM["DATA"], $PHORUM["phorum_mod_external_authentication"]["modx"]["color_variables"]);
+  }
+   
+  if (!empty($PHORUM["phorum_mod_external_authentication"]["modx"]["integration_variables"])) {
+      $PHORUM["DATA"] = array_merge($PHORUM["DATA"], $PHORUM["phorum_mod_external_authentication"]["modx"]["integration_variables"]);
+  }
+}
 ?>

@@ -1,0 +1,16 @@
+Инструкция по установке.
+
+PHORUM
+1. Скачайте и установите модуль external_authentification http://www.phorum.org/phorum5/read.php?62,134494
+2. Скопируйте в каталон plugins_bin модуля каталог phorum/external_authentication/plugins_bin/modx из этого архива
+3. В настройках модуля укажите полный путь к MODx. Дополнительно, если хотите автоматически присваивать статус администратора сайта пользователям определенных групп в MODx, то укажите список групп через запятую и включите Transfer admin status.
+4. Рекомендуется в качестве заготовки взять шаблон Generic Integration http://www.phorum.org/phorum5/read.php?63,136928
+
+MODx
+
+1. Скопируйте каталог assets в modx
+2. Создайте страницу для контейнера форума. В шаблоне между <head> и </head> вставьте вызов сниппета [!Phorum? &action=`header`!]. В содержимое страницы вставьте вызов сниппета [!Phorum? action=`content`!]
+3. Создайте страницу для контейнера CSS. В качестве шаблона укажите "blank" и снипите флажок "Показывать в меню". В содержимое вставьте [!Phorum? &action=`content`!]
+4. В настройках assets/plugins/phorum/config.inc.php укажите путь до phorum и идентификатор страницы из пункта 3.
+5. Создайте сниппет Phorum и вставьте содержимое из assets/snippets/phorum/phorum.snippet.php
+6. Создайте плагин PhorumPlugin и вставьте содержимое из assets/plugins/phorum/phorum.plugin.php. В системных событиях укажите OnWebSaveUser
